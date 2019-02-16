@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
+
   <head>
     <title>Lingua-Franca</title>
     <meta charset="utf-8">
@@ -8,61 +9,49 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
-  <body>
 
-  <div class="container">
+  <body>
+  <div class="container" id="submit-results">
     <body background = "page1.jpg">
 
     <div class="jumbotron">
       <h1>Lingua Franca</h1>
     </div>
-      <h2 style="margin-left:5%;">Results </h2>
+    
+    <h2 style="margin-left:5%;">Results </h2>
 
+     <!-- yellow to display the div columns -->
+    <div class="col-sm-6" style="background-color:yellow;"> 
 
-     <div class="col-sm-6" style="background-color:yellow;"> <!-- yellow to display the div columns -->
-    	<div class="media">
-        <h4 style="margin-left:5%;">User Name 1</h4>
-    	<img src="img_avatar1.png" class="align-self-start mr-3" style="width:60px;margin-left:5%;">
-    	<div class="media-body">
-      		<p style="margin-left:5%;margin-top:1%;">Python: 30%</p>
-      		<p style="margin-left:5%;">Language: --%</p>
-      		<p style="margin-left:5%;">Language: --%</p>
-   		 </div>
+      <div class="media" id="user1">
+        <!-- The user data will be returned by Javascript script -->
 	  </div>
 
-      <div class="media">
-        <h4 style="margin-left:5%;">User Name 2</h4>
-    	<img src="img_avatar2.png" class="align-self-start mr-3" style="width:60px;margin-left:5%;">
-    	<div class="media-body">
-      		<p style="margin-left:5%;margin-top:1%;">Python: 30%</p>
-      		<p style="margin-left:5%;">Language: --%</p>
-      		<p style="margin-left:5%;">Language: --%</p>
-   		 </div>
+      <div class="media" id="user2">
+        <!-- The user data will be returned by Javascript script -->
 	  </div>
+
+     <!-- End yellow div -->  
     </div>
 
-    <div class="col-sm-6" style="background-color:green;"> <!-- green to display the div columns -->
-    	<div class="media">
-        <h4 style="margin-left:5%;">User Name 3</h4>
-    	<img src="img_avatar1.png" class="align-self-start mr-3" style="width:60px;margin-left:5%;">
-    	<div class="media-body">
-      		<p style="margin-left:5%;margin-top:1%;">Python: 30%</p>
-      		<p style="margin-left:5%;">Language: --%</p>
-      		<p style="margin-left:5%;">Language: --%</p>
-   		 </div>
+     <!-- green to display the div columns -->
+    <div class="col-sm-6" style="background-color:green;"> 
+
+      <div class="media" id="user3">
+        <!-- The user data will be returned by Javascript script -->
 	  </div>
 
-      <div class="media">
-        <h4 style="margin-left:5%;">User Name 4</h4>
-    	<img src="img_avatar2.png" class="align-self-start mr-3" style="width:60px;margin-left:5%;">
-    	<div class="media-body">
-      		<p style="margin-left:5%;margin-top:1%;">Python: 30%</p>
-      		<p style="margin-left:5%;">Language: --%</p>
-      		<p style="margin-left:5%;">Language: --%</p>
-   		 </div>
+      <div class="media" id="user4">
+        <!-- The user data will be returned by Javascript script -->
 	  </div>
+
+     <!-- End green div -->  
     </div>
-        </body>
+    </body>
+
   </div>
   </body>
-  </html>
+
+
+  <script src="scripts/validateForm.js"></script>
+</html>
