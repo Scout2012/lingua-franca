@@ -1,15 +1,6 @@
 console.log("In initial.js");
 var API_BASE = "https://api.github.com";
 
-// var initial_users = [];
-// for(let i of [1,2,3,4]){
-//     let param = 'user' + i;
-//     let user = url.searchParams.get(param);
-//     if(user){
-//         initial_users.push(user);
-//     }
-// }
-
 var userCards = [];
 
 if (errs == 0 && users){
