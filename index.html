@@ -17,7 +17,6 @@
      <body background = "page1.JPG">
 
 
-
       <div class="jumbotron">
         <h1>Lingua Franca</h1>
         <p>Determine the common languages shared by a set of programmers.</p>
@@ -27,11 +26,17 @@
 
       <form id="username-form" action="profile.html">
         <h2 style="margin-left:5%;">Enter up to four GitHub usernames.</h2>
-        <h2 style="margin-left:5%;">Member #1: <input type="text" name="username" class="username"></h2><br>
-        <h2 style="margin-left:5%;">Member #2: <input type="text" name="username" class="username"></h2><br>
-        <h2 style="margin-left:5%;">Member #3: <input type="text" name="username" class="username"></h2><br>
-        <h2 style="margin-left:5%;">Member #4: <input type="text" name="username" class="username"></h2><br>
+        <h2 style="margin-left:5%;">User #1: <input type="text" name="user1" class="username"></h2><br>
+        <h2 style="margin-left:5%;">User #2: <input type="text" name="user2" class="username"></h2><br>
+        <h2 style="margin-left:5%;">User #3: <input type="text" name="user3" class="username"></h2><br>
+        <h2 style="margin-left:5%;">User #4: <input type="text" name="user4" class="username"></h2><br>
 
+        <!-- When the user clicks on this button, it will trigger this form's action! -->
+        <input type="submit" value="Match" 
+               class="btn btn-primary btn-xl"
+               style="margin-left:70%;">
+
+        <!-- We are using a submit input element instead of a button now
         <button class="btn btn-primary btn-xl" 
                 type="button" style="margin-left:70%;" 
                 value="Submit"
@@ -39,6 +44,7 @@
                 id="index-submit">
             Submit
         </button>
+        -->
       </form>
 
      </body>
