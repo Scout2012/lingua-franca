@@ -1,5 +1,5 @@
 console.log("in validateForm.js");
-
+var errs = 0;
 // Fetch the user parameters passed through the form
 var urlString = window.location.href;
 var url = new URL(urlString);
@@ -26,4 +26,5 @@ if (users.length == 0){
         </body>
     </div>`;
     document.getElementById('submit-results').innerHTML = html;
+    errs += 1;
 }
