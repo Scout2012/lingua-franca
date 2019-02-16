@@ -1,118 +1,90 @@
+console.log("In initial.js");
 var API_BASE = "https://api.github.com";
 
+var userCards = [];
 
-var btn1 = document.getElementById("index-submit")
-
-btn1.onclick = getUsernames;
-//
-// function verifyUser(){
-//   var userData = [];
-//   var textfield = document.getElementsByClassName("username");
-//   for(var i = 0; i < textfield.length; i++){
-//     if(textfield[i].value != ''){
-//       checkUsername(textfield[i].value.toString()).then((res)=>{
-//         //if is a user
-//         var parsed = JSON.parse(res);
-//         // console.log(parsed);
-//         userData.push(new userCard(parsed.login));
-//         var span_del = document.getElementById("error-msg");
-//         if(span_del != null){
-//           span_del.removeChild(span_del.childNodes[0]);
-//         }
-//         return parsed
-//       }, (rej)=>{
-//         //not a user
-//         document.getElementById("error-msg").innerHTML = "<p>WOAH, BAD INFORMATION</p>";
-//         return null
-//       }).then((result)=>{
-//         console.log(result);
-//       });
-//     }
-//   }
-//   //need to fix localStorage, shits broken
-//   return userData;
-// }
-
-function getUsernames(){
-  var usernames = [];
-  var textfield = document.getElementsByClassName("username");
-  for(var i = 0; i < textfield.length; i++){
-    verifyUser(textfield[i].value).then(
-      (res)=>{
-        usernames.push(res);
-        console.log("Hello"+res);
-      });
-  }
-  // console.log(usernam es);
+if (errs == 0 && users){
+    console.log(`\tChecking that all GitHub users exists`);
+    userCards = verifyUsers().then( (cards) => {
+        console.log(`\tCreated ${cards.length} cards`);
+    });
 }
 
-function verifyUser(user){
-  // var textfield = document.getElementsByClassName("username");
-  // for(var i = 0; i < textfield.length; i++){
-  return new Promise((resolve)=>{
-    if(user != ''){
-      checkUsername(user).then(
-        (res)=>{
-          return user;
+async function verifyUsers(){
+    let cards = [];
+    for(var i = 0; i < users.length; i++){
+      if(users[i] != ''){
+        console.log(`\t\tChecking user ${users[i]}`);
+        var data = await checkUsername(users[i])
+        if(data){
+          await cards.push(new userCard(data.login, data.email, data.avatar_url ));
         }
-      );
+      }
     }
-    // }
-    return false;
-  });
+    return cards;
 }
 
-
-
-function checkUsername(username){
-  // console.log(username);
-  return new Promise((res, rej)=>{
-    var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = ()=>{
-          if (xhttp.readyState == 4 && xhttp.status == 200){
-            res(xhttp.response);
-          }
-          if(xhttp.readyState == 4 && xhttp.status != 200){
-            rej("Some wack stuff happened: " + Error(xhttp.status));
-          }
+async function checkUsername(username){
+  try {
+    const API_ENDPOINT = `${API_BASE}/users/${username}`
+    // console.log(API_ENDPOINT)
+    const request = await fetch(API_ENDPOINT);
+    const data = await request.json();
+    const status = await request.status;
+    if(status != 200){
+      throw {
+        statusCode: status,
+        userName: username
       }
-    xhttp.open("GET", API_BASE + "/users/" + username)
-    xhttp.setRequestHeader("User-Agent", "request");
-    xhttp.send();
-  });
+    } else {
+      return data;
+    }
+    return data;
+  }
+  catch (e) {
+    console.log(e);
+    const detailError = `${e.statusCode} code received. ${e.userName} is an invalid github username`;
+    let html =
+    `<div id="error"
+          <body>
+              <h2 >Error</h2>
+              <p id="details">One or more of the GitHub usernames provided was invalid.</p>
+              <a href="index.html"><strong>Try again.</strong></a>
+          </body>
+      </div>`;
+    document.getElementById("submit-results").innerHTML = html;
+    let newDetail = document.createElement('p');
+    newDetail.textContent = detailError;
+    document.getElementById("details").append(newDetail);
+    errs += 1;
+  }
 }
 
 class userCard {
-  constructor(username){
-    console.log("Constructor called" + username);
+  constructor(username, email, avatar_link){
+    console.log("\t\tConstructor called" + username);
+    this.email = (email != null) ? email : null
+    this.avatar = avatar_link;
     this.username = username;
   }
 
-  get userRepos(){
-    genericRequest("GET", this.username).then((res)=>{
-      if(res.length !== 0 && res !== "undefined"){
-        return res;
-      }
-    }, (rej)=>{
-      return Error("Couldn't fetch repos");
-    });
+  userCommits(){
+
   }
 
-  genericRequest(method, username){
-    return new Promise((res, rej)=>{
-      var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = ()=>{
-            if (xhttp.readyState == 4 && xhttp.status == 200){
-              res(xhttp.response);
-            }
-            if(xhttp.readyState == 4 && xhttp.status != 200){
-              rej("Some wack stuff happened: " + Error(xhttp.status));
-            }
-        }
-      xhttp.open("GET", API_BASE + "/users/" + "/" + this.username + "/repos")
-      xhttp.setRequestHeader("User-Agent", "request");
-      xhttp.send();
-    });
+  userLanguage(repo){
+      return repo.language
   }
 
+  async repoRequest(){
+    try {
+      const API_ENDPOINT = `${API_BASE}/users/${this.username}/repos`;
+      const request = await fetch(API_ENDPOINT);
+      const data = await request.json();
+      return data;
+    }
+    catch (e){
+      console.log(e);
+    }
+  }
 }
