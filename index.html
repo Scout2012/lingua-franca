@@ -25,23 +25,26 @@
 
       <div id="error-message"></div>
 
-      <form id="username-form">
+      <form id="username-form" action="profile.html">
         <h2 style="margin-left:5%;">Enter up to four GitHub usernames.</h2>
         <h2 style="margin-left:5%;">Member #1: <input type="text" name="username" class="username"></h2><br>
         <h2 style="margin-left:5%;">Member #2: <input type="text" name="username" class="username"></h2><br>
         <h2 style="margin-left:5%;">Member #3: <input type="text" name="username" class="username"></h2><br>
         <h2 style="margin-left:5%;">Member #4: <input type="text" name="username" class="username"></h2><br>
 
-        <button id="validate-button" type="button" onclick="validateForm();">Validate</button>
-
-      <a href="profile.html">
-          <button class="btn btn-primary btn-xl" type="button" style="margin-left:70%;" value="Submit">Submit</button>
-        </a>
+        <button class="btn btn-primary btn-xl" 
+                type="button" style="margin-left:70%;" 
+                value="Submit"
+                onclick="validateForm();"
+                id="index-submit">
+            Submit
+        </button>
       </form>
 
      </body>
 
     <script src="scripts/validateForm.js"></script>
+    <script src="scripts/initial.js"></script>
 
   </div>
   </body>
