@@ -1,118 +1,62 @@
 var API_BASE = "https://api.github.com";
 
-
-var btn1 = document.getElementById("index-submit")
-
-btn1.onclick = getUsernames;
-//
-// function verifyUser(){
-//   var userData = [];
-//   var textfield = document.getElementsByClassName("username");
-//   for(var i = 0; i < textfield.length; i++){
-//     if(textfield[i].value != ''){
-//       checkUsername(textfield[i].value.toString()).then((res)=>{
-//         //if is a user
-//         var parsed = JSON.parse(res);
-//         // console.log(parsed);
-//         userData.push(new userCard(parsed.login));
-//         var span_del = document.getElementById("error-msg");
-//         if(span_del != null){
-//           span_del.removeChild(span_del.childNodes[0]);
-//         }
-//         return parsed
-//       }, (rej)=>{
-//         //not a user
-//         document.getElementById("error-msg").innerHTML = "<p>WOAH, BAD INFORMATION</p>";
-//         return null
-//       }).then((result)=>{
-//         console.log(result);
-//       });
-//     }
-//   }
-//   //need to fix localStorage, shits broken
-//   return userData;
-// }
-
-function getUsernames(){
-  var usernames = [];
-  var textfield = document.getElementsByClassName("username");
-  for(var i = 0; i < textfield.length; i++){
-    verifyUser(textfield[i].value).then(
-      (res)=>{
-        usernames.push(res);
-        console.log("Hello"+res);
-      });
-  }
-  // console.log(usernam es);
-}
-
-function verifyUser(user){
-  // var textfield = document.getElementsByClassName("username");
-  // for(var i = 0; i < textfield.length; i++){
-  return new Promise((resolve)=>{
-    if(user != ''){
-      checkUsername(user).then(
-        (res)=>{
-          return user;
+async function verifyUsers(){
+  var cards = [];
+    var textfield = document.getElementsByClassName("username");
+    for(var i = 0; i < textfield.length; i++){
+      if(textfield[i].value != ''){
+        var data = await checkUsername(textfield[i].value)
+        if(data){
+          // console.log("Good User!");
+          await cards.push(new userCard(data.login, data.email, data.avatar_url ));
+          
         }
-      );
+      }
     }
-    // }
-    return false;
-  });
+    console.log(cards);
 }
 
 
 
-function checkUsername(username){
-  // console.log(username);
-  return new Promise((res, rej)=>{
-    var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = ()=>{
-          if (xhttp.readyState == 4 && xhttp.status == 200){
-            res(xhttp.response);
-          }
-          if(xhttp.readyState == 4 && xhttp.status != 200){
-            rej("Some wack stuff happened: " + Error(xhttp.status));
-          }
-      }
-    xhttp.open("GET", API_BASE + "/users/" + username)
-    xhttp.setRequestHeader("User-Agent", "request");
-    xhttp.send();
-  });
+async function checkUsername(username){
+  try {
+    const API_ENDPOINT = `${API_BASE}/users/${username}`
+    console.log(API_ENDPOINT)
+    const request = await fetch(API_ENDPOINT);
+    const data = await request.json();
+    return data;
+  }
+  catch (e) {
+    console.log(e);
+    return false;
+  }
 }
 
 class userCard {
-  constructor(username){
+  constructor(username, email, avatar_link){
     console.log("Constructor called" + username);
+    this.email = (email != null) ? email : null
+    this.avatar = avatar_link;
     this.username = username;
   }
 
-  get userRepos(){
-    genericRequest("GET", this.username).then((res)=>{
-      if(res.length !== 0 && res !== "undefined"){
-        return res;
-      }
-    }, (rej)=>{
-      return Error("Couldn't fetch repos");
-    });
+  userCommits(){
+
   }
 
-  genericRequest(method, username){
-    return new Promise((res, rej)=>{
-      var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = ()=>{
-            if (xhttp.readyState == 4 && xhttp.status == 200){
-              res(xhttp.response);
-            }
-            if(xhttp.readyState == 4 && xhttp.status != 200){
-              rej("Some wack stuff happened: " + Error(xhttp.status));
-            }
-        }
-      xhttp.open("GET", API_BASE + "/users/" + "/" + this.username + "/repos")
-      xhttp.setRequestHeader("User-Agent", "request");
-      xhttp.send();
-    });
+  userLanguage(repo){
+      return repo.language
   }
 
+  async repoRequest(){
+    try {
+      const API_ENDPOINT = `${API_BASE}/users/${this.username}/repos`;
+      const request = await fetch(API_ENDPOINT);
+      const data = await request.json();
+      return data;
+    }
+    catch (e){
+      console.log(e);
+    }
+  }
 }
