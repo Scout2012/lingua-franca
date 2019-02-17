@@ -4,29 +4,50 @@ console.log("In displayUsers.js");
 async function genHtmlCards(profileCards){
   console.log(profileCards)
   if (errs == 0){
-    console.log("\tGenerating HTML for each user");
+    console.log("Generating HTML for each user");
 
     let i = 0;
     while(i < profileCards.length){
-      wack = await getLanguages(profileCards[i]).then((languages)=>{
-        return ( getCommits(languages, profileCards[i]));
-      }).then((commitLanguages)=>{
-        return languageStrength(commitLanguages);
-      });
-      console.log(wack)
       let id = 'user' + (i+1);
       let canvasId = `canvas-${id}`;
       let user = profileCards[i].username;
-      console.log(`\t\tProcessing user "${user}"`);
+      console.log(`\tProcessing user "${user}"`);
       let avatarSrc = profileCards[i].avatar;
       let link = `https://github.com/${user}`;
+      
+      let languages = await getLanguages(profileCards[i]);
+      languages = removeDuplicates(languages);
+      console.log("\t\t"+user+'\'S LANGUAGES: '+languages);
+      let commitCounts = [];
+      let commitLangs = await getCommits(languages, profileCards[i]);
+      if (commitLangs && Object.keys(commitLangs).length != 0){
+        for(let lang of languages){
+            if(commitLangs[lang]){
+                console.log("\t\t\t"+user +"'s language "+ lang + " HAS " + commitLangs[lang] + " COMMITS");
+                commitCounts.push(commitLangs[lang]);
+            } else{
+                console.log("\t\tFOUND NO COMMITS FOR "+lang);
+                commitCounts.push(0);
+            }
+        }
+      } else{
+        console.log("\t\tERROR!!! commitLangs wasn't populated");
+      }
+      console.log("\t\t"+user+"'S COMMITS : " + commitCounts);
+
+      languages = stringListToString(languages);
+      commitCounts = '[' + commitCounts.join(',') + ']';      
+      
       let html = `
         <div class="card">
           <img src="${avatarSrc}" alt="${user}'s GitHub avatar" style="width:50%">
           <div class="media">
             <h4><a href="${link}"><b>${user}</b></a></h4>
             <p>Skill Set</p>
-            <img src="pixel.png" alt="peachy" style="display:none;">
+            <div class="canvas-holder">
+              <canvas id=${canvasId}></canvas>
+            </div>
+            <img onload="buildChart('${canvasId}','Skills',${languages},${commitCounts});" src="pixel.png" alt="peachy" style="display:none;">
           </div>
         </div>
       `;
