@@ -1,17 +1,35 @@
-var users = []
+// var users = []
+//
+// var urlString = window.location.href;
+// var url = new URL(urlString);
+// for(let i of [1,2,3,4]){
+//     let param = 'user' + i;
+//     let user = url.searchParams.get(param);
+//     if(user){
+//         users.push(user);
+//     }
+// }
+async function getCards(userCards){
+  const cards = await userCards;
+  return cards
+}
+cards = getCards(userCards);
 
-var urlString = window.location.href;
-var url = new URL(urlString);
-for(let i of [1,2,3,4]){
-    let param = 'user' + i;
-    let user = url.searchParams.get(param);
-    if(user){
-        users.push(user);
-    }
+console.log(cards);
+
+
+function getUnion(profileCard1, profileCard2){
+  var intersect = intersection(profileCard1, profileCard2);
+  if(intersect){
+    return intersect
+  } else {
+    return null;
+  }
 }
 
-for(var i = 0; i < users.length; i++){
-  console.log(users[i]);
+function getSkills(profileCard){
+    return profileCard.languages;
 }
 
-document.getElementById()
+
+// document.getElementById()
