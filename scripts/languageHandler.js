@@ -11,7 +11,7 @@
 // }
 
 function getIntersection(profileCard1, profileCard2){
-  var intersect = intersection(profileCard1, profileCard2);
+  var intersect = intersection(profileCard1.languages, profileCard2.languages);
   if(intersect){
     return intersect
   } else {
