@@ -15,31 +15,20 @@ async function genHtmlCards(profileCards){
       });
       console.log(wack)
       let id = 'user' + (i+1);
+      let canvasId = `canvas-${id}`;
       let user = profileCards[i].username;
       console.log(`\t\tProcessing user "${user}"`);
       let avatarSrc = profileCards[i].avatar;
       let link = `https://github.com/${user}`;
       let html = `
-      <h4 style="margin-left:5%;">
-      <a href=${link}>${user}</a console.log(commits);></h4>
-      <a href=${link}>
-      <img src="${avatarSrc}" class="align-self-start mr-3" style="width:60px;margin-left:5%;">
-      </a>
-      <div class="media-body">
-<<<<<<< HEAD
-        <img src="${avatarSrc}" alt="Avatar" style= "width:50%; height:60%>
-        <div class="container">
-          <h4><b>${user}</b></h4>
-           <ol>Languages</ol>
+        <div class="card">
+          <img src="${avatarSrc}" alt="${user}'s GitHub avatar" style="width:50%">
+          <div class="media">
+            <h4><a href="${link}"><b>${user}</b></a></h4>
+            <p>Skill Set</p>
+            <img src="pixel.png" alt="peachy" style="display:none;">
+          </div>
         </div>
-      </div>
-
-=======
-      <p style="margin-left:5%;margin-top:1%;">Python: 30%</p>
-      <p style="margin-left:5%;">Language: --%</p>
-      <p style="margin-left:5%;">Language: --%</p>
-      </div>
->>>>>>> c273d8d6497769ca0aba6df82eedaa88d38abe07
       `;
 
       document.getElementById(id).innerHTML = html;
