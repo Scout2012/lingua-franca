@@ -1,5 +1,5 @@
-
-buildChart('chart-area','Language Proficiency',['Python','Javascript','CSS','HTML','C++','Java'], [30,20,10,10,20,10]);
+// Example usage:
+// buildChart('chart-area','Language Proficiency',['Python','Javascript','CSS','HTML','C++','Java'], [30,20,10,10,20,10]);
 
 // elementId must be the ID of the canvas
 // titleInput is a string
@@ -45,20 +45,7 @@ function buildChart(elementId, titleInput, labelsInput, dataInput){
       var ctx = document.getElementById(elementId).getContext('2d');
       window.myDoughnut = new Chart(ctx, config);
     };
-}
-
-function hashCode(str) {
-    var hash = 0;
-    for (var i = 0; i < str.length; i++) {
-       hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    return hash;
-} 
-
-function intToRGB(i){
-    var c = (i & 0x00FFFFFF)
-        .toString(16)
-        .toUpperCase();
-
-    return "00000".substring(0, 6 - c.length) + c;
+    
+    var ctx = document.getElementById(elementId).getContext('2d');
+    window.myDoughnut = new Chart(ctx, config);
 }
