@@ -19,15 +19,20 @@ async function genHtmlCards(profileCards){
       let link = `https://github.com/${user}`;
       let html = `
       <h4 style="margin-left:5%;">
-      <a href=${link}>${user}</a></h4>
-      <a href=${link}>
-      <img src="${avatarSrc}" class="align-self-start mr-3" style="width:60px;margin-left:5%;">
-      </a>
+
       <div class="media-body">
-      <p style="margin-left:5%;margin-top:1%;">Python: 30%</p>
-      <p style="margin-left:5%;">Language: --%</p>
-      <p style="margin-left:5%;">Language: --%</p>
+        <img src="${avatarSrc}" alt="Avatar" style="width:50%">
+        <div class="container">
+          <h4><b>${user}</b></h4>
+          <p>Languages</p>
+        </div>
       </div>
+
+
+
+
+
+
       `;
 
       document.getElementById(id).innerHTML = html;
