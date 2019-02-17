@@ -25,11 +25,11 @@ async function languageStrength(commitLangs){
   return await bestLang;
 }
 
-function intersection(user1, user2){
+function intersection(lang1, lang2){
   var t;
-  if (user2.length > user1.length) t = user2, user2 = user1, user1 = t; // indexOf to loop over shorter
-    return user1.filter(function (e) {
-        return user2.indexOf(e) > -1;
+  if (lang2.length > lang1.length) t = lang2, lang2 = lang1, lang1 = t; // indexOf to loop over shorter
+    return lang1.filter(function (e) {
+        return lang2.indexOf(e) > -1;
     });
 }
 
@@ -51,7 +51,7 @@ function removeDuplicates(list){
   return uniques;
 }
 
-// USAGE: 
+// USAGE:
 // let color = intToRGB(hashCode(<language name>));
 function hashCode(str) {
     var hash = 0;
@@ -59,7 +59,7 @@ function hashCode(str) {
        hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
     return hash;
-} 
+}
 function intToRGB(i){
     var c = (i & 0x00FFFFFF)
         .toString(16)

@@ -9,17 +9,9 @@
 //         users.push(user);
 //     }
 // }
-async function getCards(userCards){
-  const cards = await userCards;
-  return cards
-}
-cards = getCards(userCards);
 
-console.log(cards);
-
-
-function getUnion(profileCard1, profileCard2){
-  var intersect = intersection(profileCard1, profileCard2);
+function getIntersection(profileCard1, profileCard2){
+  var intersect = intersection(profileCard1.languages, profileCard2.languages);
   if(intersect){
     return intersect
   } else {
