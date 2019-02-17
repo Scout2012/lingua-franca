@@ -7,8 +7,10 @@ console.log("In displayUsers.js");
 async function getLanguages(profileCard){
   var languages = [];
   const repos = await profileCard.repoRequest();
-  for(var i = 0; i < repos.length && (repos[i].language) !== null; i++){
-    languages.push(repos[i].language)
+  for(var i = 0; i < repos.length; i++){
+    if(repos[i] !== null && repos[i].language !== null){
+       languages.push(repos[i].language)
+    }
   }
   return languages;
 }
