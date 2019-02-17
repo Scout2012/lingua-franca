@@ -11,9 +11,8 @@ for(let i of [1,2,3,4]){
     if(user){
         users.push(user);
     }
-    console.log("\tRetrieved form parameters: \n\t\t" + users);
-
-    if (users.length == 0){
+}
+if (users.length == 0){
       console.log("\tERROR: no usernames were passed");
 
       let html =
@@ -27,4 +26,3 @@ for(let i of [1,2,3,4]){
       document.getElementById('submit-results').innerHTML = html;
       errs += 1;
     }
-}
