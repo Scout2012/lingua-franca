@@ -44,12 +44,19 @@ async function checkUsername(username){
   }
   catch (e) {
     console.log(e);
-    const detailError = `${e.statusCode} code received. ${e.userName} is an invalid github username`;
+    const possibleResponse = {
+      200: "Success",
+      403: "You've most likely made too many requests in too little time. Try again later",
+      404: "Page not found",
+      409: "Forbidden access to the server"
+    };
+    const detailError = `${possibleResponse[e.statusCode]} code received with response ${possibleResponse[e.statusCode].value}`;
+    console.log(detailError);
     let html =
     `<div id="error"
           <body>
               <h2 >Error</h2>
-              <p id="details">One or more of the GitHub usernames provided was invalid.</p>
+              <p id="details"></p>
               <a href="index.html"><strong>Try again.</strong></a>
           </body>
       </div>`;
