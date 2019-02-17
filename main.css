@@ -21,7 +21,27 @@ card {
 
 }
 #logo{
-  
+
   width: 25%;
   height: 25%;
+}
+#shared{
+
+  width: 25%;
+  height: 25%;
+
+}
+#user_{
+  width: 25%;
+  height: 25%;
+}
+.flex{
+
+  position: flex;
+}
+#home{
+
+  width: 10%;
+  height: 10%;
+
 }
