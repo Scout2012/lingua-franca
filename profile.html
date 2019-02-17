@@ -1,85 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-    <title>Lingua-Franca</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel= "stylesheet" href="main.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-    <script src="https://www.chartjs.org/dist/2.7.3/Chart.bundle.js"></script>
-	  <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
-	    <style>
-	     canvas {
-    		-moz-user-select: none;
-    		-webkit-user-select: none;
-    		-ms-user-select: none;
-    	}
-    	</style>
-  </head>
-
-  <body>
-  <div class="container" id="submit-results">
-    <body background = "page1.jpg">
-
-    <div class="jumbotron">
-
-      <center>
-          <h1>Lingua Franca</h1>
-        <img src="logo.png" class="rounded float-right" id="logo" >
-      </center>
-    </div>
-
-    <h2 style="margin-left:5%;">Results </h2>
-
-     <!-- yellow to display the div columns -->
-    <div class="col-sm-6">
-
-
-      <div class="media" id="user1">
-        <!-- The user data will be returned by Javascript script -->
-	  </div>
-
-      <div class="media" id="user2">
-        <!-- The user data will be returned by Javascript script -->
-	  </div>
-
-     <!-- End yellow div -->
-    </div>
-
-     <!-- green to display the div columns -->
-    <div class="col-sm-6">
-
-      <div class="media" id="user3">
-        <!-- The user data will be returned by Javascript script -->
-	  </div>
-
-      <div class="media" id="user4">
-        <!-- The user data will be returned by Javascript script -->
-
-	  </div>
-
-     <!-- End green div -->
+    <head>
+        <title>Lingua-Franca</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel= "stylesheet" href="main.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="https://www.chartjs.org/dist/2.7.3/Chart.bundle.js"></script>
+        <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+        <style>
+            canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="submit-results">
+            <body background = "page1.jpg">
+                <div class="jumbotron">
+                    <center>
+                        <h1>Lingua Franca</h1>
+                        <img src="logo.png" class="rounded float-right" id="logo" >
+                    </center>
+                    <a href="index.html">
+                    <img src="home.png" class="rounded float-right" id="home" >
+                    </a>
+                </div>
+                <div id = "user_skills">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <center>
+                                <img src="user.png" class="rounded float-right" id="user_" >
+                                <h1 class="display-3">User Skills</h1>
+                            </center>
+                        </div>
+                    </div>
+                    <!-- yellow to display the div columns -->
+                    <div class="col-sm-6">
+                        <div class="media" id="user1">
+                            <!-- The user data will be returned by Javascript script -->
+                        </div>
+                        <div class="media" id="user2">
+                            <!-- The user data will be returned by Javascript script -->
+                        </div>
+                        <!-- End yellow div -->
+                    </div>
+                    <!-- green to display the div columns -->
+                    <div class="col-sm-6">
+                        <div class="media" id="user3">
+                            <!-- The user data will be returned by Javascript script -->
+                        </div>
+                        <div class="media" id="user4">
+                            <!-- The user data will be returned by Javascript script -->
+                        </div>
+                        <!-- End green div -->
+                    </div>
+                </div>
+                <div id = "shared-skills">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <center>
+                                <img src="shared.png" class="rounded float-right" id="shared" >
+                                <h1 class="display-3">Shared Skills</h1>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <body id="flex">
+                    <div class="row">
+                        <div class="container">
+                            <div class="jumbotron text-center col-mid-6">
+                                <h2>Code in Harmony Choose</h2>
+                                <h1>C++</h1>
+                            </div>
+                        </div>
+                    </div>
+    </body>
     </div>
     </body>
-    <center>
-      <a href="results.html">
-        <button type="button" class="btn btn-info btn-arrow-right">Continue</button>
-      </a>
-
-    </center>
-
-  </div>
-
-  </body>
-  <script src="scripts/buildChart.js"></script>
-  <script src="scripts/algos.js"></script>
-  <script src="scripts/validateForm.js"></script>
-  <script src="scripts/displayUsers.js"></script>
-  <script src="scripts/initial.js"></script>
-
+    </div>
+    </body>
+    <script src="scripts/buildChart.js"></script>
+    <script src="scripts/algos.js"></script>
+    <script src="scripts/validateForm.js"></script>
+    <script src="scripts/displayUsers.js"></script>
+    <script src="scripts/initial.js"></script>
 </html>
