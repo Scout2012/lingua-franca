@@ -1,7 +1,6 @@
 console.log("In displayUsers.js");
 
 
-
 async function genHtmlCards(profileCards){
   console.log(profileCards)
   if (errs == 0){
@@ -9,9 +8,12 @@ async function genHtmlCards(profileCards){
 
     let i = 0;
     while(i < profileCards.length){
-      var langs = await getLanguages(profileCards[i]).then((langs)=>{
-        console.log(langs)
+      wack = await getLanguages(profileCards[i]).then((languages)=>{
+        return ( getCommits(languages, profileCards[i]));
+      }).then((commitLanguages)=>{
+        return languageStrength(commitLanguages);
       });
+      console.log(wack)
       let id = 'user' + (i+1);
       let user = profileCards[i].username;
       console.log(`\t\tProcessing user "${user}"`);
@@ -19,8 +21,12 @@ async function genHtmlCards(profileCards){
       let link = `https://github.com/${user}`;
       let html = `
       <h4 style="margin-left:5%;">
-
+      <a href=${link}>${user}</a console.log(commits);></h4>
+      <a href=${link}>
+      <img src="${avatarSrc}" class="align-self-start mr-3" style="width:60px;margin-left:5%;">
+      </a>
       <div class="media-body">
+<<<<<<< HEAD
         <img src="${avatarSrc}" alt="Avatar" style= "width:50%; height:60%>
         <div class="container">
           <h4><b>${user}</b></h4>
@@ -28,6 +34,12 @@ async function genHtmlCards(profileCards){
         </div>
       </div>
 
+=======
+      <p style="margin-left:5%;margin-top:1%;">Python: 30%</p>
+      <p style="margin-left:5%;">Language: --%</p>
+      <p style="margin-left:5%;">Language: --%</p>
+      </div>
+>>>>>>> c273d8d6497769ca0aba6df82eedaa88d38abe07
       `;
 
       document.getElementById(id).innerHTML = html;
@@ -37,11 +49,53 @@ async function genHtmlCards(profileCards){
 }
 
 //null language means empty repo
-async function getLanguages(profileCards){
+async function getLanguages(profileCard){
   var languages = [];
-  const repos = await profileCards.repoRequest();
-  for(var i = 0; i < repos.length; i++){
+  const repos = await profileCard.repoRequest();
+  for(var i = 0; i < repos.length && (repos[i].language) !== null; i++){
     languages.push(repos[i].language)
   }
-  return languages
+  return languages;
+}
+
+async function getCommits(languages, profileCard){
+  var commitLangs = {};
+  const repos = await profileCard.repoRequest();
+  // const commitsOnLang = await profileCard.userLanguage();
+  for(var i = 0; i < repos.length; i++){
+    if(!commitLangs[repos[i].language] && repos[i].language != null){
+      commitLangs[repos[i].language] = 1;
+    }
+    var commits = await commitsRequest(profileCard.username, repos[i].name).then((commits)=>{
+      if(commits){
+        for(var j = 0; j <  commits.length && commits[j].author; j++){
+          if(repos[i].language != null)
+            if((commits[j].author.login) == profileCard.username){
+              commitLangs[repos[i].language] += 1;
+            }
+        }
+      }
+    });
+}
+// console.log('commit languages: '+commitLangs);
+return commitLangs;
+}
+
+async function commitsRequest(username, reponame){
+  try {
+    const API_ENDPOINT = `${API_BASE}/repos/${username}/${reponame}/commits`;
+    // console.log(API_ENDPOINT)
+    const request = await fetch(API_ENDPOINT);
+    const data = await request.json();
+    const status = await request.status;
+    if(status != 200){
+      throw ("Error getting commits " + status);
+    } else {
+      return data;
+    }
+    return data;
+  }
+  catch (e) {
+    console.log(e);
+}
 }
