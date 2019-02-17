@@ -36,6 +36,7 @@ function intersection(lang1, lang2){
 function stringListToString(list){
     var quoted = [];
     for(let s of list){
+        s = s.replace(/'/g,"");
         quoted.push("'"+s+"'");
     }
     return "[" + quoted.join(',') + "]";
