@@ -32,3 +32,38 @@ function intersection(user1, user2){
         return user2.indexOf(e) > -1;
     });
 }
+
+function stringListToString(list){
+    var quoted = [];
+    for(let s of list){
+        quoted.push("'"+s+"'");
+    }
+    return "[" + quoted.join(',') + "]";
+}
+
+function removeDuplicates(list){
+  var uniques = [];
+  for(let x of list){
+    if (!uniques.includes(x)){
+        uniques.push(x);
+    }
+  }
+  return uniques;
+}
+
+// USAGE: 
+// let color = intToRGB(hashCode(<language name>));
+function hashCode(str) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+} 
+function intToRGB(i){
+    var c = (i & 0x00FFFFFF)
+        .toString(16)
+        .toUpperCase();
+
+    return "00000".substring(0, 6 - c.length) + c;
+}
