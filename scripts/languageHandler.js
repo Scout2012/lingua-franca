@@ -9,26 +9,17 @@
 //         users.push(user);
 //     }
 // }
+async function getCards(userCards){
+  const cards = await userCards;
+  return cards
+}
+cards = getCards(userCards);
 
-
-// async function getCards(userCards){
-//   try {
-//     const cards = await userCards;
-//     if(typeof(cards) !== 'undefined')
-//   }
-//   catch(e) {
-//     console.log(e)
-//   }
-//
-//   return cards
-// }
-// cards = getCards(userCards);
-//
-// console.log(cards);
+console.log(cards);
 
 
 function getIntersection(profileCard1, profileCard2){
-  var intersect = intersection(profileCard1.languages, profileCard2.languages);
+  var intersect = intersection(profileCard1, profileCard2);
   if(intersect){
     return intersect
   } else {
