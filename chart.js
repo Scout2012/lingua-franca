@@ -24,8 +24,8 @@ function drawlanguageChart() {
 
   // Set options for language chart.
   var options = {title:'Common Programming Language',
-                 width:800,
-                 height:800};
+                 width:570,
+                 height:570};
 
   // Instantiate and draw the chart for languages.
   var chart = new google.visualization.PieChart(document.getElementById('language_chart_div'));
@@ -50,8 +50,8 @@ function drawcommitChart() {
 
   // Set options for repositories pie chart.
   var options = {title:'Who has more commits?',
-                 width:800,
-                 height:800};
+                 width:570,
+                 height:570};
 
   // Instantiate and draw the chart for repositories
   var chart = new google.visualization.PieChart(document.getElementById('repo_chart_div'));

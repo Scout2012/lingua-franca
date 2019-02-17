@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
@@ -29,118 +30,14 @@
     </div>
 <<<<<<< HEAD
 
-    <h2 style="margin-left:10%;">Results </h2>
 
 
-    <div id="canvas-holder" style="width:60%;margin-left:20%;">
-    		<canvas id="chart-area"></canvas>
-    	</div>
-
-    	<script>
-    		var randomScalingFactor = function() {
-    			return Math.round(Math.random() * 100);
-    		};
-
-    		var config = {
-    			type: 'doughnut',
-    			data: {
-    				datasets: [{
-    					data: [
-    						120,
-    						10,
-    						50,
-    						20,
-    					],
-    					backgroundColor: [
-    						window.chartColors.red,
-    						window.chartColors.orange,
-    						window.chartColors.yellow,
-    						window.chartColors.green,
-    						window.chartColors.blue,
-    					],
-    					label: 'Dataset 1'
-    				}],
-    				labels: [
-    					'Java',
-    					'Python',
-    					'C++',
-    					'HTML'
-    				]
-    			},
-    			options: {
-    				responsive: true,
-    				legend: {
-    					position: 'top',
-    				},
-    				title: {
-    					display: true,
-    					text: 'Language Chart'
-    				},
-    				animation: {
-    					animateScale: true,
-    					animateRotate: true
-    				}
-    			}
-    		};
-
-    		window.onload = function() {
-    			var ctx = document.getElementById('chart-area').getContext('2d');
-    			window.myDoughnut = new Chart(ctx, config);
-    		};
-
-    	</script>
-
-      <br><br>
-    <div class="col-sm-6">
-
-      <div class="media">
-        <h4 style="margin-left:20%;">User Name 1</h4>
-    	<img src="img_avatar1.png" class="align-self-start mr-3" style="width:60px;margin-left:20%;">
-    	<div class="media-body">
-      	  <p style="margin-left:20%;margin-top:1%;">Python: 30%</p>
-      	  <p style="margin-left:20%;">Language: --%</p>
-      	  <p style="margin-left:20%;">Language: --%</p>
-   		</div>
-	  </div>
-
-      <div class="media">
-        <h4 style="margin-left:20%;">User Name 2</h4>
-    	<img src="img_avatar2.png" class="align-self-start mr-3" style="width:60px;margin-left:20%;">
-    	<div class="media-body">
-      	  <p style="margin-left:20%;margin-top:1%;">Python: 30%</p>
-      	  <p style="margin-left:20%;">Language: --%</p>
-      	  <p style="margin-left:20%;">Language: --%</p>
-   		</div>
-	  </div>
-
-    </div>
-
-    <div class="col-sm-6">
-
-      <div class="media">
-        <h4 style="margin-left:20%;">User Name 3</h4>
-    	<img src="img_avatar1.png" class="align-self-start mr-3" style="width:60px;margin-left:20%;">
-    	<div class="media-body">
-      	  <p style="margin-left:20%;margin-top:1%;">Python: 30%</p>
-      	  <p style="margin-left:20%;">Language: --%</p>
-      	  <p style="margin-left:20%;">Language: --%</p>
-   		</div>
-	  </div>
-
-      <div class="media">
-        <h4 style="margin-left:20%;">User Name 4</h4>
-    	<img src="img_avatar2.png" class="align-self-start mr-3" style="width:60px;margin-left:20%;">
-    	<div class="media-body">
-      		<p style="margin-left:20%;margin-top:1%;">Python: 30%</p>
-      		<p style="margin-left:20%;">Language: --%</p>
-      		<p style="margin-left:20%;">Language: --%</p>
-   		</div>
 =======
-    
+
     <h2 style="margin-left:5%;">Results </h2>
 
      <!-- yellow to display the div columns -->
-    <div class="col-sm-6" style="background-color:yellow;"> 
+    <div class="col-sm-6" style="background-color:yellow;">
 
       <div class="media" id="user1">
         <!-- The user data will be returned by Javascript script -->
@@ -150,11 +47,11 @@
         <!-- The user data will be returned by Javascript script -->
 	  </div>
 
-     <!-- End yellow div -->  
+     <!-- End yellow div -->
     </div>
 
      <!-- green to display the div columns -->
-    <div class="col-sm-6" style="background-color:green;"> 
+    <div class="col-sm-6" style="background-color:green;">
 
       <div class="media" id="user3">
         <!-- The user data will be returned by Javascript script -->
@@ -165,7 +62,7 @@
 >>>>>>> 35e810374a3b37f2c9647c0ab9ae3d5624bb2877
 	  </div>
 
-     <!-- End green div -->  
+     <!-- End green div -->
     </div>
     </body>
 
@@ -184,7 +81,7 @@
   <script src="scripts/validateForm.js"></script>
 =======
 
-  
+
   <script src="scripts/validateForm.js"></script>
   <script src="scripts/initial.js"></script>
   <script src="scripts/displayUsers.js"></script>
