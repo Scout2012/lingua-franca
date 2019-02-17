@@ -1,15 +1,16 @@
 console.log("In algos.js");
 
 
-async function languageRatio(commitLangs){
-  var weighted = {};
-  for(langs in commitLangs){
-    if(!weighted[langs]){
-      weighted[langs] = Math.abs((commitLangs[langs] - Object.keys(commitLangs).length)/(Object.keys(commitLangs).length));
-    }
-  }
-  return await weighted
-}
+// async function languageRatio(commitLangs){
+//   var weighted = {};
+//   for(langs in commitLangs){
+//     if(!weighted[langs]){
+//       weighted[langs] = Math.abs((commitLangs[langs] + Object.keys(commitLangs).length)/(Object.keys(commitLangs).length));
+//     }
+//   }
+//   return await weighted
+// }
+
 
 async function languageStrength(commitLangs){
   var sortedArray = [];
@@ -23,18 +24,11 @@ async function languageStrength(commitLangs){
   }
   return await bestLang;
 }
-  // for(lang in commitLangs){
-  //   if(sortedArray.length == 0){
-  //     sortedArray.push(commitLangs[lang]);
-  //     largest = sortedArray[0];
-  //   }
-  //   for(var i = 0; i < (Object.keys(commitLangs).length); i++){
-  //     if(commitLangs[lang] > sortedArray[i]){
-  //       sortedArray.splice(i, 0, commitLangs[lang]);
-  //       sortedArray.join();
-  //     } else {
-  //       sortedArray.push(commitLangs[lang]);
-  //     }
-  //   }
-  // }
-  // return await sortedArray;
+
+function intersection(user1, user2){
+  var t;
+  if (user2.length > user1.length) t = user2, user2 = user1, user1 = t; // indexOf to loop over shorter
+    return user1.filter(function (e) {
+        return user2.indexOf(e) > -1;
+    });
+}
