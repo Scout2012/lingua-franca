@@ -25,11 +25,11 @@ async function languageStrength(commitLangs){
   return await bestLang;
 }
 
-function intersection(user1, user2){
+function intersection(lang1, lang2){
   var t;
-  if (user2.length > user1.length) t = user2, user2 = user1, user1 = t; // indexOf to loop over shorter
-    return user1.filter(function (e) {
-        return user2.indexOf(e) > -1;
+  if (lang2.length > lang1.length) t = lang2, lang2 = lang1, lang1 = t; // indexOf to loop over shorter
+    return lang1.filter(function (e) {
+        return lang2.indexOf(e) > -1;
     });
 }
 
