@@ -2,14 +2,52 @@ console.log("In initial.js");
 var API_BASE = "https://api.github.com";
 
 var userCards = [];
-
+console.log(userCards);
 if (errs == 0 && users){
     console.log(`\tChecking that all GitHub users exists`);
     userCards = verifyUsers().then( (cards) => {
-        // console.log(`\tCreated ${cards.length} cards`);
         genHtmlCards(cards);
     });
 }
+
+async function genHtmlCards(profileCards){
+  console.log(profileCards)
+  if (errs == 0){
+    console.log("\tGenerating HTML for each user");
+
+    let i = 0;
+    while(i < profileCards.length){
+      profileCards.repos
+      wack = await getLanguages(profileCards[i]).then((languages)=>{
+        return ( getCommits(languages, profileCards[i]));
+      }).then((commitLanguages)=>{
+        return languageStrength(commitLanguages);
+      });
+      console.log(wack)
+      let id = 'user' + (i+1);
+      let user = profileCards[i].username;
+      console.log(`\t\tProcessing user "${user}"`);
+      let avatarSrc = profileCards[i].avatar;
+      let link = `https://github.com/${user}`;
+      let html = `
+      <h4 style="margin-left:5%;">
+      <a href=${link}>${user}</a console.log(commits);></h4>
+      <a href=${link}>
+      <img src="${avatarSrc}" class="align-self-start mr-3" style="width:60px;margin-left:5%;">
+      </a>
+      <div class="media-body">
+      <p style="margin-left:5%;margin-top:1%;">Python: 30%</p>
+      <p style="margin-left:5%;">Language: --%</p>
+      <p style="margin-left:5%;">Language: --%</p>
+      </div>
+      `;
+
+      document.getElementById(id).innerHTML = html;
+      i += 1;
+    }
+  }
+}
+
 
 async function verifyUsers(){
     let cards = [];
@@ -74,6 +112,7 @@ class userCard {
     this.email = (email != null) ? email : null
     this.avatar = avatar_link;
     this.username = username;
+    this.repos = [];
   }
 
   userCommits(repo){
