@@ -65,7 +65,6 @@ async function getCommits(languages, profileCard){
 }
 console.log('commit languages: '+JSON.stringify(commitLangs));
 return commitLangs;
-
 }
 
 async function commitsRequest(username, reponame){
