@@ -21,7 +21,7 @@ async function languageStrength(commitLangs){
       bestLang = item;
     }
   }
-  return bestLang;
+  return await bestLang;
 }
   // for(lang in commitLangs){
   //   if(sortedArray.length == 0){
