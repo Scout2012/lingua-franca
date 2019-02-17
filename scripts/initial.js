@@ -2,16 +2,20 @@ console.log("In initial.js");
 var API_BASE = "https://api.github.com";
 
 var userCards = [];
-console.log(userCards);
 if (errs == 0 && users){
     console.log(`\tChecking that all GitHub users exists`);
     userCards = verifyUsers().then( (cards) => {
-        genHtmlCards(cards);
+        genHtmlCards(cards).then(()=>{
+          postIntersection(cards);
+          console.log(cards);
+        });
+        // console.log(cards);
     });
 }
 
 async function genHtmlCards(profileCards){
-  console.log(profileCards)
+  // console.log(profileCards)
+
   if (errs == 0){
     console.log("Generating HTML for each user");
 
@@ -19,6 +23,7 @@ async function genHtmlCards(profileCards){
     while(i < profileCards.length){
       let id = 'user' + (i+1);
       let canvasId = `canvas-${id}`;
+      let skillId = `skill-${id}`;
       let user = profileCards[i].username;
       console.log(`\tProcessing user "${user}"`);
       let avatarSrc = profileCards[i].avatar;
@@ -53,7 +58,7 @@ async function genHtmlCards(profileCards){
           <img src="${avatarSrc}" alt="${user}'s GitHub avatar" style="width:50%">
           <div class="media">
             <h4><a href="${link}"><b>${user}</b></a></h4>
-            <p>Skill Set</p>
+            <p id=${skillId}>Skill Set</p>
             <div class="canvas-holder">
               <canvas id=${canvasId}></canvas>
             </div>
@@ -63,11 +68,65 @@ async function genHtmlCards(profileCards){
       `;
 
       document.getElementById(id).innerHTML = html;
+      postSkills(profileCards[i], skillId);
       i += 1;
     }
   }
 }
 
+function postSkills(profile, id){
+  var addSkills = document.createElement('p');
+  var comment = profile.languages;
+  addSkills.textContent = comment;
+  document.getElementById(id).appendChild(addSkills);
+}
+
+function postIntersection(profileCards){
+  // for(var i = 0; i < profileCards.length; i++){
+  //   for(var j = i+1; j < profileCards.length; j++){
+  //   }
+  // }
+  var intersectedLangs = [];
+  for(var i = 0; i < profileCards.length; i++){
+    for(var j = i+1; j < profileCards.length; j++ ){
+      let shared = getIntersection(profileCards[i], profileCards[j]);
+      console.log(shared)
+      if(shared){
+        for(let lang of shared){
+          intersectedLangs.push(lang);
+        }
+      }
+    }
+  }
+  intersectedLangs = removeDuplicates(intersectedLangs);
+  console.log("Intersecting langs: " + intersectedLangs);
+
+  var intersectionImg = "";
+  let html = '';
+  for(let lang of intersectedLangs){
+    let intersects = 0;
+    for(let usr of profileCards){
+      if(usr.languages.includes(lang)){
+        intersects += 1;
+      }
+    }
+    console.log("LANGUAGE "+lang+" SHARED BY "+intersects+" USERS");
+    html += `
+      <body id="flex">
+        <div class="row">
+          <div class="container">
+            <div class="jumbotron text-center col-mid-6">
+              <h2>${lang}</h2>
+              <h1>${intersects} users share this skill</h1>
+            </div>
+          </div>
+        </div>
+      </body>
+    `;
+  }
+  console.log("ADDING THIS HTML:\n"+html);
+  document.getElementById('suggestions').innerHTML = html;
+}
 
 async function verifyUsers(){
     let cards = [];

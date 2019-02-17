@@ -51,7 +51,7 @@ function removeDuplicates(list){
   return uniques;
 }
 
-// USAGE: 
+// USAGE:
 // let color = intToRGB(hashCode(<language name>));
 function hashCode(str) {
     var hash = 0;
@@ -59,7 +59,7 @@ function hashCode(str) {
        hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
     return hash;
-} 
+}
 function intToRGB(i){
     var c = (i & 0x00FFFFFF)
         .toString(16)
