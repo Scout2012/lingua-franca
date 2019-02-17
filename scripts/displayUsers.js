@@ -21,17 +21,12 @@ async function genHtmlCards(profileCards){
       <h4 style="margin-left:5%;">
 
       <div class="media-body">
-        <img src="${avatarSrc}" alt="Avatar" style="width:50%">
+        <img src="${avatarSrc}" alt="Avatar" style= "width:50%; height:60%>
         <div class="container">
           <h4><b>${user}</b></h4>
-          <p>Languages</p>
+           <ol>Languages</ol>
         </div>
       </div>
-
-
-
-
-
 
       `;
 

@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel= "stylesheet" href="main.css"
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -14,12 +15,17 @@
   <body>
   <div class="container">
 
-     <body background = "page1.JPG">
+       <body background = "page1.JPG">
 
 
       <div class="jumbotron">
+      <center>
         <h1>Lingua Franca</h1>
         <p>Determine the common languages shared by a set of programmers.</p>
+      </center>
+          <center>
+            <img src="logo.jpg" class="rounded float-right" id="logo">
+          </center>
       </div>
 
       <div id="error-message"></div>
@@ -32,13 +38,13 @@
         <h2 style="margin-left:5%;">User #4: <input type="text" name="user4" class="username"></h2><br>
 
         <!-- When the user clicks on this button, it will trigger this form's action! -->
-        <input type="submit" value="Match" 
-               class="btn btn-primary btn-xl"
+        <input type="submit" value="Match"
+               class="btn btn-primary btn-l"
                style="margin-left:70%;">
 
         <!-- We are using a submit input element instead of a button now
-        <button class="btn btn-primary btn-xl" 
-                type="button" style="margin-left:70%;" 
+        <button class="btn btn-primary btn-xl"
+                type="button" style="margin-left:70%;"
                 value="Submit"
                 onclick="validateForm();"
                 id="index-submit">
