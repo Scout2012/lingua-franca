@@ -112,7 +112,7 @@ class userCard {
     this.email = (email != null) ? email : null
     this.avatar = avatar_link;
     this.username = username;
-    this.repos = [];
+    this.languages = [];
   }
 
   userCommits(repo){

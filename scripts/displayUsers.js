@@ -14,9 +14,10 @@ async function genHtmlCards(profileCards){
       console.log(`\tProcessing user "${user}"`);
       let avatarSrc = profileCards[i].avatar;
       let link = `https://github.com/${user}`;
-      
+
       let languages = await getLanguages(profileCards[i]);
-      languages = removeDuplicates(languages);
+        languages = removeDuplicates(languages);
+        profileCards[i].languages = languages;
       console.log("\t\t"+user+'\'S LANGUAGES: '+languages);
       let commitCounts = [];
       let commitLangs = await getCommits(languages, profileCards[i]);
@@ -36,8 +37,8 @@ async function genHtmlCards(profileCards){
       console.log("\t\t"+user+"'S COMMITS : " + commitCounts);
 
       languages = stringListToString(languages);
-      commitCounts = '[' + commitCounts.join(',') + ']';      
-      
+      commitCounts = '[' + commitCounts.join(',') + ']';
+
       let html = `
         <div class="card">
           <img src="${avatarSrc}" alt="${user}'s GitHub avatar" style="width:50%">
