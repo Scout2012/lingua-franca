@@ -11,20 +11,20 @@ for(let i of [1,2,3,4]){
     if(user){
         users.push(user);
     }
-}
-console.log("\tRetrieved form parameters: \n\t\t" + users);
+    console.log("\tRetrieved form parameters: \n\t\t" + users);
 
-if (users.length == 0){
-    console.log("\tERROR: no usernames were passed");
+    if (users.length == 0){
+      console.log("\tERROR: no usernames were passed");
 
-    let html = 
-    `<div class="error"
-        <body>
-            <h2>Error</h2>
-            <p>Please enter at least one valid GitHub username.</p>
-            <a href="index.html"><strong>Try again.</strong></a>
-        </body>
-    </div>`;
-    document.getElementById('submit-results').innerHTML = html;
-    errs += 1;
+      let html =
+      `<div class="error"
+      <body>
+      <h2>Error</h2>
+      <p>Please enter at least one valid GitHub username.</p>
+      <a href="index.html"><strong>Try again.</strong></a>
+      </body>
+      </div>`;
+      document.getElementById('submit-results').innerHTML = html;
+      errs += 1;
+    }
 }

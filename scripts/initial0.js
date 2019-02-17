@@ -1,29 +1,34 @@
-console.log("In initial.js");
 var API_BASE = "https://api.github.com";
 
-var userCards = [];
+console.log("in initial.js");
 
-if (errs == 0 && users){
-    console.log(`\tChecking that all GitHub users exists`);
-    userCards = verifyUsers().then( (cards) => {
-        // console.log(`\tCreated ${cards.length} cards`);
-        genHtmlCards(cards);
-    });
+var initial_users = [];
+var urlString = window.location.href;
+var url = new URL(urlString);
+for(let i of [1,2,3,4]){
+    let param = 'user' + i;
+    let user = url.searchParams.get(param);
+    if(user){
+        initial_users.push(user);
+    }
 }
 
+verifyUsers();
+
 async function verifyUsers(){
-    let cards = [];
-    for(var i = 0; i < users.length; i++){
-      if(users[i] != ''){
-        console.log(`\t\tChecking user ${users[i]}`);
-        var data = await checkUsername(users[i])
+  var cards = [];
+    for(var i = 0; i < initial_users.length; i++){
+      if(initial_users[i] != ''){
+        var data = await checkUsername(initial_users[i])
         if(data){
           await cards.push(new userCard(data.login, data.email, data.avatar_url ));
         }
       }
     }
-    return cards;
+    console.log(cards)
 }
+
+
 
 async function checkUsername(username){
   try {
@@ -43,7 +48,6 @@ async function checkUsername(username){
     return data;
   }
   catch (e) {
-    console.log(e);
     const detailError = `${e.statusCode} code received. ${e.userName} is an invalid github username`;
     let html =
     `<div id="error"
@@ -57,24 +61,28 @@ async function checkUsername(username){
     let newDetail = document.createElement('p');
     newDetail.textContent = detailError;
     document.getElementById("details").append(newDetail);
-    errs += 1;
+
   }
 }
 
 class userCard {
+  //call the repo once
+  //store it
+  //use that to pass to the other methods
+
   constructor(username, email, avatar_link){
-    console.log("\t\tConstructor called" + username);
+    console.log("Constructor called " + username);
     this.email = (email != null) ? email : null
     this.avatar = avatar_link;
     this.username = username;
   }
 
   userCommits(repo){
-    return repo.commit
+    return repo.commits;
   }
 
   userLanguage(repo){
-      return repo.language
+      return repo.language;
   }
 
   async repoRequest(){
@@ -82,7 +90,7 @@ class userCard {
       const API_ENDPOINT = `${API_BASE}/users/${this.username}/repos`;
       const request = await fetch(API_ENDPOINT);
       const data = await request.json();
-      return data;
+      return await data;
     }
     catch (e){
       console.log(e);
